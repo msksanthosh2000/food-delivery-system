@@ -1,0 +1,59 @@
+<main class="catalogue-container" *ngIf="foodCatalogueResponse as data">
+
+    <!-- RESTAURANT HEADER -->
+    <div class="restaurant-header">
+
+        <div class="restaurant-info">
+            <h2>{{ data.restaurant.name }}</h2>
+            <p>{{ data.restaurant.restaurantDescription }}</p>
+        </div>
+
+        <!-- Cart summary (optional but recommended) -->
+        <button class="checkout-btn" (click)="onCheckOut()" [disabled]="getTotalItems() === 0">
+            Checkout ({{ getTotalItems() }} items)
+        </button>
+
+    </div>
+
+    <!-- MENU TITLE -->
+    <h3 class="menu-title">Food Menu</h3>
+
+    <!-- EMPTY STATE -->
+    <div *ngIf="!data.foodItems?.length" class="empty-state">
+        No food items available
+    </div>
+
+    <!-- FOOD LIST -->
+    <div class="food-list" *ngIf="data.foodItems?.length">
+
+        <div class="food-item" *ngFor="let item of data.foodItems">
+
+            <!-- LEFT -->
+            <div class="food-details">
+                <h4>{{ item.itemName }}</h4>
+                <p class="price">₹ {{ item.price }}</p>
+            </div>
+
+            <!-- RIGHT -->
+            <div class="food-actions">
+
+                <!-- DECREASE -->
+                <button (click)="decrease(item)" [disabled]="!item.quantity">
+                    −
+                </button>
+
+                <!-- QUANTITY -->
+                <span>{{ item.quantity || 0 }}</span>
+
+                <!-- INCREASE -->
+                <button (click)="increase(item)">
+                    +
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>

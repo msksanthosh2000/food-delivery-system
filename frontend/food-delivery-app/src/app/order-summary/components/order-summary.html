@@ -1,0 +1,49 @@
+<!-- MAIN ORDER CONTAINER -->
+<div class="order-container" *ngIf="orderSummary">
+
+  <h2 class="title">Order Summary</h2>
+
+  <div class="table-container">
+
+    <table class="order-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let item of orderSummary.foodItemList">
+          <td>{{ item.itemName }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>₹ {{ item.price * item.quantity }}</td>
+        </tr>
+      </tbody>
+
+      <tfoot>
+        <tr class="total-row">
+          <td colspan="2">Total</td>
+          <td>₹ {{ getTotalAmount() }}</td>
+        </tr>
+      </tfoot>
+    </table>
+
+  </div>
+
+  <!-- BUTTON -->
+  <button class="place-order-btn" (click)="placeOrder()">
+    Place Order
+  </button>
+
+</div>
+
+<!-- ✅ MOVE POPUP OUTSIDE -->
+<div class="dialog-overlay" *ngIf="showDialog">
+  <div class="dialog-box">
+    <h3>🎉 Order Placed Successfully!</h3>
+    <p>Your food is on the way 🚀</p>
+    <button (click)="closeDialog()">Go to Home</button>
+  </div>
+</div>
