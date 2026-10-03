@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
-import { API_URL_FOOD_CATALOG } from '../../constants/url';
+// import { API_URL_FOOD_CATALOG } from '../../constants/url';
 import { FoodItem } from '../model/FoodItem';
+import { K8ExternalIp } from '../../constants/url';
 
 export interface Restaurant {
     id: number;
@@ -24,7 +25,7 @@ export interface FoodCataloguePage {
 })
 export class FoodItemService {
 
-    private baseUrl = API_URL_FOOD_CATALOG + '/foodCatalogue';
+    private baseUrl = K8ExternalIp + '/foodCatalogue';
 
     constructor(private http: HttpClient) { }
 

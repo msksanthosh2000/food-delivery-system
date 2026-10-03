@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
-import { API_URL_RESTAURANTS } from '../../constants/url';
+// import { API_URL_RESTAURANTS } from '../../constants/url';
+import { K8ExternalIp } from '../../constants/url';
 
 @Injectable({
     providedIn: 'root'
@@ -9,7 +10,7 @@ import { API_URL_RESTAURANTS } from '../../constants/url';
 export class RestaurantService {
 
     // Base URL for fetching all restaurants from the backend API
-    private apiFetchAllRestaurantsUrl = API_URL_RESTAURANTS + '/restaurant/fetchAllRestaurants';
+    private apiFetchAllRestaurantsUrl = K8ExternalIp + '/restaurant/fetchAllRestaurants';
 
     constructor(private httpClient: HttpClient) {}
 
